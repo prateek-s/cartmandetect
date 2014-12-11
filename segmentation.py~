@@ -1,0 +1,36 @@
+import os,sys
+import numpy as np
+import matplotlib.pyplot as plt
+
+from scipy import ndimage
+from scipy import ndimage as nd
+
+from skimage.filter import sobel
+from skimage.filter import rank
+from skimage.segmentation import * 
+from skimage.morphology import watershed, disk
+from skimage.color import label2rgb
+from skimage import data, img_as_float
+import skimage.io
+from skimage.morphology import watershed, disk
+from skimage import data
+from skimage.filter import rank
+from skimage.util import img_as_ubyte
+
+
+def main(fnames):
+    for fname in fnames[1:] :
+        if not os.path.isfile(fname) :
+            print "Error, not exists"+str(fname)
+            return False
+
+    grabcutI = do_grabcut(fname)
+    grabcutI = opencv_convert(grabcutI)
+    segmentedI = do_watershedding(grabcutI)
+    #pickle the segmented image?
+    #display?
+
+
+
+if __name__ == "__main__":
+    main(sys.argv)
