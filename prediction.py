@@ -38,8 +38,13 @@ def display_labels(labelslist,image,s2wdict):
         for label in sd.keys():
             word = sd[label]
             labels[labels==word] = word 
+
+        for alabel in np.unique(labels) :
+            (x,y) = get_segment_centre(labels,alabel)
+            print x,y 
+            axes[i].text(x,y,str(alabel))
             
-        segimg = label2rgb(pow(labels,1), image=image[i], image_alpha=0.1)
+        segimg = label2rgb(labels, image=image[i], image_alpha=0.1)
         axes[i].imshow(segimg, interpolation='nearest')
 
     legend = plt.legend()
@@ -48,6 +53,20 @@ def display_labels(labelslist,image,s2wdict):
     
     plt.show()
 
+
+
+################################################################################
+
+
+def get_segment_centre(segmentedim, theseg):
+    (Xs,Ys) = np.where(segmentedim == theseg)
+    left=np.min(Xs)
+    right=np.max(Xs)
+    top=np.min(Ys)
+    bottom=np.max(Ys)
+    cX = (left+right)/2;
+    cY = (top+bottom)/2;
+    return (cX,cY)
 
 ################################################################################
 
@@ -79,7 +98,7 @@ def main(fnames):
     sdictlist=[]
     allfiles=os.listdir('../data/testimgs/')
     print allfiles
-    randfiles = ['test'+str(x)+'.png' for x in range(106,112)]
+    randfiles = ['test'+str(x)+'.png' for x in range(106,108)]
     for fname in randfiles :
         #fname = fnames[1] 
         fname = os.path.join('../data/testimgs/', fname)
