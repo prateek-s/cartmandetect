@@ -36,7 +36,7 @@ def do_grabcut(f):
 
     #rect = (upper_corner[0],upper_corner[1],lower_corner[0],lower_corner[1])
     rect= (0,0,w-10,h-10)
-    print rect
+    #print rect
     iterCount=1
     cv2.grabCut(img,mask,rect,bgdModel,fgdModel,iterCount,cv2.GC_INIT_WITH_RECT)
 
@@ -140,7 +140,7 @@ def get_feature_vectors(im, thehog, labels):
 
     c_hist = get_color_histogram(color_vector)
     #get_hog_histogram(hog_vector)
-    print c_hist
+    #print c_hist
     return c_hist
     
 ################################################################################

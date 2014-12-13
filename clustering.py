@@ -32,14 +32,15 @@ def read_all_features(path):
 
 
 def do_kmeans_clustering(ALLF) :
-    km = sklearn.cluster.KMeans(n_clusters=300,n_init=20)
-    dict_assignments = km.fit_predict(ALLF)
+    km = sklearn.cluster.KMeans(n_clusters=100,n_init=20)
+    labels = km.fit_predict(ALLF)
     CC = km.cluster_centers_
     with open('Model.pickle','wb') as outfile:
         pickle.dump(km, outfile, protocol=pickle.HIGHEST_PROTOCOL)
 
     print CC
-    return km,CC,dict_assignments
+    print CC.shape
+    return km,CC,labels
 
 
 
@@ -73,22 +74,24 @@ def lda_clust(ALLF) :
     print CC
 
 
-def silhoutte_score(ALLF,dict_assignments):
-    scores =  sklearn.metrics.silhouette_samples(ALLF, dict_assignments)
+def silhoutte_score(ALLF,labels):
+    scores =  sklearn.metrics.silhouette_samples(ALLF, labels)
     print scores
     print np.average(scores)
     print np.std(scores)
+    print ALLF.shape
+    print labels.shape
     return scores 
 
     
 def main(fpath) :
     print fpath[1]
     ALLF = read_all_features(fpath[1])
-    km,CC,dict_assignments = do_kmeans_clustering(ALLF)
-    #km,CC,dict_assignments = dbscan_clust(ALLF)
-    #km,CC,dict_assignments = agglo_clust(ALLF)
-    silhoutte_score(ALLF,dict_assignments)
-    visualize_dictionary(dict_assignments,km,CC)
+    km,CC,labels = do_kmeans_clustering(ALLF)
+    #km,CC,labels = dbscan_clust(ALLF)
+    #km,CC,labels = agglo_clust(ALLF)
+    silhoutte_score(ALLF,labels)
+    visualize_dictionary(labels,km,CC)
     #lda_clust(ALLF)
 
 
@@ -120,13 +123,13 @@ def visualize_dictionary(dict_assignments,km,CC) :
             xs.append(c)
     xs = np.array(xs)
     normalize = np.float(np.sum(ys))
-    print "MAX"+str(normalize) 
+    #print "MAX"+str(normalize) 
     ys = np.divide(ys,normalize)
-    print np.column_stack((xs,ys))
+    #print np.column_stack((xs,ys))
 
     #Need to sort bars by y's. Colors are important here
     #sort (xs,ys) on ys. we'll get color order. remake color array
-    sort_hist = True 
+    sort_hist = False
     if sort_hist :
         xs = list(xs)
         ys = list(ys)
@@ -134,7 +137,7 @@ def visualize_dictionary(dict_assignments,km,CC) :
         sortedys = zip(xs,ys)
         
         sortedys = sorted(sortedys , key=lambda x: x[1],reverse=True)
-        print sortedys
+        #print sortedys
         
         colors = []
         for (x,y) in sortedys :

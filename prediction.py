@@ -22,6 +22,7 @@ from skimage.util import img_as_ubyte
 
 import cv2
 import sklearn.cluster
+import sklearn.metrics
 
 from segmentation import IMAGE_FEATURES
 
@@ -33,19 +34,14 @@ def display_labels(labelslist,image,s2wdict):
 
     for i in range(num_images) :
         #replace segment labels by their words.
-        sd = s2wdict[i] 
         labels = labelslist[i]
-        for label in sd.keys():
-            word = sd[label]
-            labels[labels==word] = word 
-
         for alabel in np.unique(labels) :
             (x,y) = get_segment_centre(labels,alabel)
-            print x,y 
+
             axes[i].text(x,y,str(alabel))
             
-        segimg = label2rgb(labels, image=image[i], image_alpha=0.1)
-        axes[i].imshow(segimg, interpolation='nearest')
+        segimg = label2rgb(labels, image=image[i], image_alpha=0.5)
+        axes[i].imshow(segimg)
 
     legend = plt.legend()
     for ax in axes:
@@ -59,33 +55,53 @@ def display_labels(labelslist,image,s2wdict):
 
 
 def get_segment_centre(segmentedim, theseg):
-    (Xs,Ys) = np.where(segmentedim == theseg)
+    (mx,by) = np.shape(segmentedim)
+    
+    (Ys,Xs) = np.where(segmentedim == theseg)
+
     left=np.min(Xs)
     right=np.max(Xs)
     top=np.min(Ys)
     bottom=np.max(Ys)
     cX = (left+right)/2;
     cY = (top+bottom)/2;
+
     return (cX,cY)
 
 ################################################################################
 
-def do_predictions(km,s2,one_image):
+
+
+def do_predictions(km,s2,features):
     nf = 3 
     segment_to_word=dict()
-    for k in one_image.keys():
-        features = (one_image[k]).reshape([1,nf])
-        word = km.predict(features)
+    all_image_features = np.empty((len(features.keys()),nf))
+    i = 0 
+    wordlist = []
+    for k in features.keys():
+        feature_vec = (features[k]).reshape([1,nf])
+        all_image_features[i] = feature_vec 
+        i = i + 1
+        word = km.predict(feature_vec)
+    
+        #print "Predicted :"+str(word) +" for " + str(feature_vec) 
         segment_to_word[k] = word 
-
+        wordlist.append(word)
+        s2[s2==k] = word 
+        
     print segment_to_word
-    return segment_to_word 
+    #print all_image_features.shape
+    #print np.array(wordlist)
+    silscore = sklearn.metrics.silhouette_samples(all_image_features, np.array(wordlist).flatten())
+    print "SILSCORE " + str(silscore) 
+    return (segment_to_word,s2) 
 
+    
 def process_one_image(fname,km):
-    print fname 
-    (im,s2,one_image) = IMAGE_FEATURES(fname) 
+    #print fname 
+    (im,s2,features) = IMAGE_FEATURES(fname) 
     #dictionary
-    s2wdict = do_predictions(km,s2, one_image)
+    (s2wdict,s2) = do_predictions(km,s2, features)
     return (s2,im,s2wdict)
 
     
@@ -97,15 +113,16 @@ def main(fnames):
     imlist=[]
     sdictlist=[]
     allfiles=os.listdir('../data/testimgs/')
-    print allfiles
-    randfiles = ['test'+str(x)+'.png' for x in range(106,108)]
+    
+    randfiles = ['test'+str(x)+'.png' for x in range(106,208)]
     for fname in randfiles :
         #fname = fnames[1] 
         fname = os.path.join('../data/testimgs/', fname)
         (s2,im,s2wdict) = process_one_image(fname,km)
+        
         seglist.append(s2) ; imlist.append(im) ; sdictlist.append(s2wdict)
     
-    display_labels(seglist,imlist,sdictlist)
+    #display_labels(seglist,imlist,sdictlist)
     
     
 ################################################################################
