@@ -1,0 +1,119 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ifcvprfinal\pagestyle{empty}\fi
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Unsupervised Character Recognition in Cartoons}
+
+\author{Nishad Mudras \\
+{\tt\small nmudras@cs.umass.edu}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+\and
+Prateek Sharma \\
+{\tt\small prateeks@cs.umass.edu}
+}
+
+\maketitle
+%\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+   
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+
+
+
+\section{Background and Related Work}
+
+\section{Design}
+
+\section{Implementation}
+
+\section{Evaluation}
+2330 points
+
+\subsection{Silhoutte Scores}
+\begin{table}
+  \begin{tabular}{|l|l|l|}
+    \hline
+    Algorithm & Average & Std \\
+    \hline
+    agglo-200 & 0.458646443848 & 0.269008683093 \\
+    agglo-100 & 0.427810049095 & 0.264761260823 \\
+    agglo-50 & 0.39460106313 & 0.283348220964 \\
+    \hline
+    dbscan & -0.59659098259 & 0.459189910187  \\
+    \hline
+    K=400 & 0.484954993451  & 0.269845063645 \\
+
+    K=300 & 0.470033927835 & 0.255694124258 \\
+    K=250 & 0.468510843432 & 0.254082589179 \\
+    K=200 & 0.454357446669 & 0.248596212307 \\
+    K=150 & 0.451752086146 & 0.251992960509 \\
+    K=100 & 0.429384756877 & 0.236945657405 \\
+    K=50 & 0.415098853996 & 0.233513415301 \\
+    \hline
+    
+  \end{tabular}
+\end{table}
+
+\section{Future Work and Conclusion}
+
+\begin{figure}[t]
+\begin{center}
+\fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
+   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
+\end{center}
+   \caption{Example of caption.  It is set in Roman so that mathematics
+   (always set in Roman: $B \sin A = A \sin B$) may be included without an
+   ugly clash.}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+
+
+\begin{figure*}
+\begin{center}
+\fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+\end{center}
+   \caption{Example of a short caption, which should be centered.}
+\label{fig:short}
+\end{figure*}
+
+%------------------------------------------------------------------------
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}

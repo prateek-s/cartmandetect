@@ -1,0 +1,22 @@
+
+* Evaluation
+** How far is our dictionary from the true color dict?
+** Kmeans neighbour information
+** Post processing?
+** High confidence in cluster assignment?
+If distance is close, and this is a popular cluster, then highlight this
+
+** Manually find percentage(cartman) and compare
+
+** Histogram comparisons between kmeans/assigned clusters
+
+** Confusion matrix
+http://scikit-learn.org/stable/auto_examples/plot_confusion_matrix.html
+
+** Do multiple segmentations? Smaller segments and then see what happens?
+
+** Train dict on one episode, test on another. Compare with own dict
+
+** Pre-populate dict with standard segments?
+
+

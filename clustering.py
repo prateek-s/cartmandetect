@@ -3,7 +3,7 @@ import numpy as np
 import sklearn.cluster
 import sklearn.lda
 import matplotlib.pyplot as plt
-
+import sklearn.metrics
 
 def read_all_features(path):
     nf=3
@@ -31,8 +31,8 @@ def read_all_features(path):
         
 
 
-def do_clustering(ALLF) :
-    km = sklearn.cluster.KMeans(k=50)
+def do_kmeans_clustering(ALLF) :
+    km = sklearn.cluster.KMeans(n_clusters=300,n_init=20)
     dict_assignments = km.fit_predict(ALLF)
     CC = km.cluster_centers_
     with open('Model.pickle','wb') as outfile:
@@ -40,6 +40,28 @@ def do_clustering(ALLF) :
 
     print CC
     return km,CC,dict_assignments
+
+
+
+def dbscan_clust(ALLF) :
+    dbs = sklearn.cluster.DBSCAN()
+    dict_assignments = dbs.fit(ALLF)
+    dict_assignments = dbs.fit_predict(ALLF)
+    dict_assignments = dbs.labels_ 
+    with open('Model_dbs.pickle','wb') as outfile:
+        pickle.dump(dbs, outfile, protocol=pickle.HIGHEST_PROTOCOL)
+
+    return dbs,[],dict_assignments
+
+
+def agglo_clust(ALLF) :
+    dbs = sklearn.cluster.AgglomerativeClustering(n_clusters=50)
+    dict_assignments = dbs.fit(ALLF)
+    dict_assignments = dbs.fit_predict(ALLF)
+    with open('Model_dbs.pickle','wb') as outfile:
+        pickle.dump(dbs, outfile, protocol=pickle.HIGHEST_PROTOCOL)
+
+    return dbs,[],dict_assignments
 
 def lda_clust(ALLF) :
     km = sklearn.lda.LDA()
@@ -49,7 +71,25 @@ def lda_clust(ALLF) :
         pickle.dump(km, outfile, protocol=pickle.HIGHEST_PROTOCOL)
         
     print CC
+
+
+def silhoutte_score(ALLF,dict_assignments):
+    scores =  sklearn.metrics.silhouette_samples(ALLF, dict_assignments)
+    print scores
+    print np.average(scores)
+    print np.std(scores)
+    return scores 
+
     
+def main(fpath) :
+    print fpath[1]
+    ALLF = read_all_features(fpath[1])
+    km,CC,dict_assignments = do_kmeans_clustering(ALLF)
+    #km,CC,dict_assignments = dbscan_clust(ALLF)
+    #km,CC,dict_assignments = agglo_clust(ALLF)
+    silhoutte_score(ALLF,dict_assignments)
+    visualize_dictionary(dict_assignments,km,CC)
+    #lda_clust(ALLF)
 
 
 def visualize_dictionary(dict_assignments,km,CC) :
@@ -58,30 +98,61 @@ def visualize_dictionary(dict_assignments,km,CC) :
     histogram_dict=dict() 
     allc = np.unique(dict_assignments)
     for c in allc:
-        histogram_dict[c]=0 ;
+        if c!=-1:
+                histogram_dict[c]=0 ;
     for w in dict_assignments:
-        histogram_dict[w]=histogram_dict[w]+1 
+        if w != -1 :
+                histogram_dict[w]=histogram_dict[w]+1 
 
     fig = plt.figure(tight_layout=True)
     ax = fig.add_subplot(111)
     #colors are just the CC normalized by 255
+    
     colors = CC/255.0 
     ys=[]
     for c in allc:
-        ys.append(histogram_dict[c])
+        if c!=-1:
+                ys.append(histogram_dict[c])
     ys = np.array(ys) 
-    rects = ax.bar(allc, ys, color=colors)
+    xs = []
+    for c in allc:
+        if c!=-1 :
+            xs.append(c)
+    xs = np.array(xs)
+    normalize = np.float(np.sum(ys))
+    print "MAX"+str(normalize) 
+    ys = np.divide(ys,normalize)
+    print np.column_stack((xs,ys))
+
+    #Need to sort bars by y's. Colors are important here
+    #sort (xs,ys) on ys. we'll get color order. remake color array
+    sort_hist = True 
+    if sort_hist :
+        xs = list(xs)
+        ys = list(ys)
+        
+        sortedys = zip(xs,ys)
+        
+        sortedys = sorted(sortedys , key=lambda x: x[1],reverse=True)
+        print sortedys
+        
+        colors = []
+        for (x,y) in sortedys :
+            color = CC[x]/255.0 
+            colors.append(color)
+            
+        colors = np.array(colors) 
+        (xs,ys) = zip(*sortedys) 
+        xs = list(xs) ; ys = list(ys)
+        xs = sorted(xs)
+    
+    rects = ax.bar(xs, ys , color=colors)
     ax.set_xlabel("Cluster number")
     ax.set_ylabel("Frequency")
     plt.show()
         
+        
     
-def main(fpath) :
-    print fpath[1]
-    ALLF = read_all_features(fpath[1])
-    km,CC,dict_assignments = do_clustering(ALLF)
-    visualize_dictionary(dict_assignments,km,CC)
-    #lda_clust(ALLF)
     
 if __name__ == "__main__":
     main(sys.argv)
