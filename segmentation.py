@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 from scipy import ndimage
 from scipy import ndimage as nd
 
-from skimage.filter import sobel
-from skimage.filter import rank
 from skimage.segmentation import * 
 from skimage.morphology import watershed, disk
 from skimage.color import label2rgb
@@ -17,7 +15,6 @@ from skimage.feature import hog
 import skimage.io
 from skimage.morphology import watershed, disk
 from skimage import data
-from skimage.filter import rank
 from skimage.util import img_as_ubyte
 
 import cv2

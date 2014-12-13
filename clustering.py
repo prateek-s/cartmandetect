@@ -87,6 +87,7 @@ def silhoutte_score(ALLF,labels):
 def main(fpath) :
     print fpath[1]
     ALLF = read_all_features(fpath[1])
+    #ALLF = convert_all_to_HSV(ALLF)
     km,CC,labels = do_kmeans_clustering(ALLF)
     #km,CC,labels = dbscan_clust(ALLF)
     #km,CC,labels = agglo_clust(ALLF)
@@ -112,6 +113,7 @@ def visualize_dictionary(dict_assignments,km,CC) :
     #colors are just the CC normalized by 255
     
     colors = CC/255.0 
+    #colors = all_to_rgb(CC)
     ys=[]
     for c in allc:
         if c!=-1:
