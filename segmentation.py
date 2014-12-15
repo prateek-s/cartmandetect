@@ -32,7 +32,7 @@ def do_grabcut(f):
     fgdModel = np.zeros((1,65),np.float64)
 
     #rect = (upper_corner[0],upper_corner[1],lower_corner[0],lower_corner[1])
-    rect= (0,0,w-10,h-10)
+    rect= (50,50,w-100,h-100)
     #print rect
     iterCount=1
     cv2.grabCut(img,mask,rect,bgdModel,fgdModel,iterCount,cv2.GC_INIT_WITH_RECT)
@@ -197,9 +197,9 @@ def get_segments_hog(fname):
     hogi = do_hog(gi)
     #s3=watershed_segmentation(gi)
     #s4=quickshift_segmentation(gi)
-
+    show_all(fname, [im,gi,s2],["Image","Grab","Segmented Image"],2)
     return (im,s2,hogi) 
-    #show_all(fname, [im,gi,hogi,s2],["Image","Grab","hog","S2"],3)
+    
 
 ################################################################################
 
@@ -214,6 +214,8 @@ def IMAGE_FEATURES(fname) :
     
 def main(fnames):
     save_feats = True
+    (im,s2,features) = IMAGE_FEATURES(fnames[1])
+    return True
     
     for f in os.listdir(fnames[1]):
         fname = os.path.join(fnames[1],f)

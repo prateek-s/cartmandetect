@@ -1,13 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.9.4)  13 DEC 2014 11:19
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.9.4)  14 DEC 2014 19:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**report.tex
-(./report.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+**\nonstopmode\input report.tex
+(./report.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
@@ -157,6 +153,14 @@ Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count105
+\float@exts=\toks20
+\float@box=\box30
+\@float@everytoks=\toks21
+\@floatcapt=\box31
+)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
@@ -212,13 +216,13 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen119
-\Hy@linkcounter=\count105
-\Hy@pagecounter=\count106
+\Hy@linkcounter=\count106
+\Hy@pagecounter=\count107
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count107
+\Hy@SavedSpaceFactor=\count108
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -245,14 +249,14 @@ Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 ))
-\c@Hy@tempcnt=\count108
+\c@Hy@tempcnt=\count109
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4653.
-\Fld@menulength=\count109
+\Fld@menulength=\count110
 \Field@Width=\dimen120
 \Fld@charsize=\dimen121
 Package hyperref Info: Hyper figures OFF on input line 5773.
@@ -264,38 +268,41 @@ Package hyperref Info: Link coloring with OCG OFF on input line 5798.
 Package hyperref Info: PDF/A mode OFF on input line 5803.
 LaTeX Info: Redefining \ref on input line 5843.
 LaTeX Info: Redefining \pageref on input line 5847.
-\Hy@abspage=\count110
-\c@Item=\count111
-\c@Hfootnote=\count112
+\Hy@abspage=\count111
+\c@Item=\count112
+\c@Hfootnote=\count113
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/05/13 v6.82q Hyperref driver for pdfTeX
-\Fld@listcount=\count113
-\c@bookmark@seq@number=\count114
+\Fld@listcount=\count114
+\c@bookmark@seq@number=\count115
 \Hy@SectionHShift=\skip48
+) (./report.aux
+
+LaTeX Warning: Label `k-30' multiply defined.
+
 )
-No file report.aux.
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 24.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 25.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ABD: EveryShipout initializing macros
@@ -309,17 +316,17 @@ Package color Info: Driver file: pdftex.def on input line 130.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
+\scratchcounter=\count116
 \scratchdimen=\dimen122
-\scratchbox=\box30
-\nofMPsegments=\count116
-\nofMParguments=\count117
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count118
+\scratchbox=\box32
+\nofMPsegments=\count117
+\nofMParguments=\count118
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count119
 \MPscratchDim=\dimen123
-\MPnumerator=\count119
-\makeMPintoPDFobject=\count120
-\everyMPtoPDFconversion=\toks21
+\MPnumerator=\count120
+\makeMPintoPDFobject=\count121
+\everyMPtoPDFconversion=\toks23
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -335,9 +342,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box31
+\AtBeginShipoutBox=\box33
 Package atbegshi Info: Package `everyshi' patched.
-Package hyperref Info: Link coloring ON on input line 24.
+Package hyperref Info: Link coloring ON on input line 25.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -345,65 +352,247 @@ Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count121
+\c@section@level=\count122
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
-LaTeX Info: Redefining \nameref on input line 24.
+LaTeX Info: Redefining \ref on input line 25.
+LaTeX Info: Redefining \pageref on input line 25.
+LaTeX Info: Redefining \nameref on input line 25.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 43.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 44.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 45.
-
-No file report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 89.
 
 
-] [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
+LaTeX Warning: Reference `sample-cartoons' on page 1 undefined on input line 89
+.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 114.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 114.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 1320) in paragraph at lines 174--176
+[]\OT1/ptm/m/n/10 All the seg-ments(and their fea-tures) from all the
+ []
+
+<../seg2.pdf, id=26, 659.46375pt x 189.70876pt>
+File: ../seg2.pdf Graphic file (type pdf)
+ <use ../seg2.pdf>
+Package pdftex.def Info: ../seg2.pdf used on input line 211.
+(pdftex.def)             Requested size: 447.16759pt x 128.6413pt.
+ [2]
+<../results/southpark.png, id=52, 1927.2pt x 1084.05pt>
+File: ../results/southpark.png Graphic file (type png)
+
+<use ../results/southpark.png>
+Package pdftex.def Info: ../results/southpark.png used on input line 248.
+(pdftex.def)             Requested size: 248.42812pt x 139.74048pt.
+
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 248--249
+ [][] 
+ []
+
+<../results/grabcut_full.png, id=54, 228.10219pt x 126.4725pt>
+File: ../results/grabcut_full.png Graphic file (type png)
+
+<use ../results/grabcut_full.png>
+Package pdftex.def Info: ../results/grabcut_full.png used on input line 256.
+(pdftex.def)             Requested size: 248.42812pt x 137.74614pt.
+
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 256--257
+ [][] 
+ []
+
+[3 <../seg2.pdf> <../results/southpark.png> <../results/grabcut_full.png>]
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+
+<hsv.png, id=98, 578.16pt x 433.62pt>
+File: hsv.png Graphic file (type png)
+ <use hsv.png>
+Package pdftex.def Info: hsv.png used on input line 332.
+(pdftex.def)             Requested size: 447.16759pt x 335.37053pt.
+
+<rgb.png, id=99, 578.16pt x 433.62pt>
+File: rgb.png Graphic file (type png)
+ <use rgb.png>
+Package pdftex.def Info: rgb.png used on input line 339.
+(pdftex.def)             Requested size: 447.16759pt x 335.37053pt.
+
+
+LaTeX Warning: Reference `hsv,rgb' on page 4 undefined on input line 346.
+
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--418
+[]\OT1/ptm/m/n/10 The pipeline is im-ple-mented by us-ing the
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 415--418
+\OT1/pcr/m/n/10 scikit-image \OT1/ptm/m/n/10 and \OT1/pcr/m/n/10 opencv \OT1/pt
+m/m/n/10 li-braries. For clus-ter-
+ []
+
+<../results/10_histogram.png, id=100, 586.8324pt x 442.2924pt>
+File: ../results/10_histogram.png Graphic file (type png)
+
+<use ../results/10_histogram.png>
+Package pdftex.def Info: ../results/10_histogram.png used on input line 452.
+(pdftex.def)             Requested size: 248.42812pt x 187.23953pt.
+
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 452--453
+ [][] 
+ []
+
+<../results/20_histogram.png, id=101, 586.8324pt x 442.2924pt>
+File: ../results/20_histogram.png Graphic file (type png)
+
+<use ../results/20_histogram.png>
+Package pdftex.def Info: ../results/20_histogram.png used on input line 459.
+(pdftex.def)             Requested size: 248.42812pt x 187.23953pt.
+
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 459--460
+ [][] 
+ []
+
+<../results/30_histogram.png, id=102, 586.8324pt x 442.2924pt>
+File: ../results/30_histogram.png Graphic file (type png)
+
+<use ../results/30_histogram.png>
+Package pdftex.def Info: ../results/30_histogram.png used on input line 466.
+(pdftex.def)             Requested size: 248.42812pt x 187.23953pt.
+
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 466--467
+ [][] 
+ []
+
+<../results/100_histogram.png, id=103, 1517.67pt x 856.3995pt>
+File: ../results/100_histogram.png Graphic file (type png)
+
+<use ../results/100_histogram.png>
+Package pdftex.def Info: ../results/100_histogram.png used on input line 473.
+(pdftex.def)             Requested size: 447.16759pt x 252.32204pt.
+
+<../150_histogram.png, id=104, 1517.67pt x 856.3995pt>
+File: ../150_histogram.png Graphic file (type png)
+
+<use ../150_histogram.png>
+Package pdftex.def Info: ../150_histogram.png used on input line 480.
+(pdftex.def)             Requested size: 447.16759pt x 252.32204pt.
+
+<../200_histogram_sorted.png, id=105, 586.8324pt x 442.2924pt>
+File: ../200_histogram_sorted.png Graphic file (type png)
+
+<use ../200_histogram_sorted.png>
+Package pdftex.def Info: ../200_histogram_sorted.png used on input line 487.
+(pdftex.def)             Requested size: 447.16759pt x 337.03656pt.
+
+<../250_histogram.png, id=106, 1517.67pt x 856.3995pt>
+File: ../250_histogram.png Graphic file (type png)
+
+<use ../250_histogram.png>
+Package pdftex.def Info: ../250_histogram.png used on input line 494.
+(pdftex.def)             Requested size: 447.16759pt x 252.32204pt.
+
+<../300_histogram.png, id=107, 1517.67pt x 856.3995pt>
+File: ../300_histogram.png Graphic file (type png)
+
+<use ../300_histogram.png>
+Package pdftex.def Info: ../300_histogram.png used on input line 501.
+(pdftex.def)             Requested size: 447.16759pt x 252.32204pt.
+
+<../dbscan_hist.png, id=108, 586.8324pt x 442.2924pt>
+File: ../dbscan_hist.png Graphic file (type png)
+ <use ../dbscan_hist.png>
+Package pdftex.def Info: ../dbscan_hist.png used on input line 508.
+(pdftex.def)             Requested size: 248.42812pt x 187.23953pt.
+
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 508--509
+ [][] 
+ []
+
+<../agglo_hist.png, id=109, 586.8324pt x 442.2924pt>
+File: ../agglo_hist.png Graphic file (type png)
+ <use ../agglo_hist.png>
+Package pdftex.def Info: ../agglo_hist.png used on input line 515.
+(pdftex.def)             Requested size: 447.16759pt x 337.03656pt.
+
+[4] [5 <../results/10_histogram.png> <../results/20_histogram.png>] [6
+
+ <../results/30_histogram.png> <../dbscan_hist.png>] [7 <../results/100_histogr
+am.png> <../150_histogram.png>] [8 <../200_histogram_sorted.png> <../250_histog
+ram.png>] [9 <../300_histogram.png> <../agglo_hist.png>] (./report.bbl (./repor
+t.brf)
+\tf@brf=\write3
+\openout3 = `report.brf'.
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 569.
+
+[10
+
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 569.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 119.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 119.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 569.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 569.
+Package rerunfilecheck Info: File `report.brf' has not changed.
+(rerunfilecheck)             Checksum: B4F1CE1E608824E94C46B7ECE2A40D02;199.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 119.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 569.
  ) 
 Here is how much of TeX's memory you used:
- 6256 strings out of 495059
- 89225 string characters out of 3182031
- 169771 words of memory out of 3000000
- 9340 multiletter control sequences out of 15000+200000
- 23627 words of font info for 64 fonts, out of 3000000 for 9000
+ 6503 strings out of 495059
+ 93220 string characters out of 3182031
+ 191328 words of memory out of 3000000
+ 9504 multiletter control sequences out of 15000+200000
+ 27043 words of font info for 65 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 34i,9n,24p,299b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,9n,26p,294b,330s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p
-fb>
-Output written on report.pdf (2 pages, 55413 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (10 pages, 2847853 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 149 compressed objects within 2 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

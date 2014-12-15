@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}\itemsep=-1pt
+
+\bibitem{arandjelovic2005automatic}
+O.~Arandjelovic and A.~Zisserman.
+\newblock Automatic face recognition for film character retrieval in
+  feature-length films.
+\newblock In {\em Computer Vision and Pattern Recognition, 2005. CVPR 2005.
+  IEEE Computer Society Conference on}, volume~1, pages 860--867. IEEE, 2005.
+
+\bibitem{everingham2009taking}
+M.~Everingham, J.~Sivic, and A.~Zisserman.
+\newblock Taking the bite out of automated naming of characters in tv video.
+\newblock {\em Image and Vision Computing}, 27(5):545--559, 2009.
+
+\bibitem{satoh1999name}
+S.~Satoh, Y.~Nakamura, and T.~Kanade.
+\newblock Name-it: Naming and detecting faces in news videos.
+\newblock {\em IEEE Multimedia}, 6(1):22--35, 1999.
+
+\bibitem{sivic2005person}
+J.~Sivic, M.~Everingham, and A.~Zisserman.
+\newblock Person spotting: video shot retrieval for face sets.
+\newblock In {\em Image and Video Retrieval}, pages 226--236. Springer, 2005.
+
+\bibitem{snoek2008concept}
+C.~G. Snoek and M.~Worring.
+\newblock Concept-based video retrieval.
+\newblock {\em Foundations and Trends in Information Retrieval}, 2(4):215--322,
+  2008.
+
+\bibitem{zhang20132}
+T.~Zhang, Q.~Han, A.~A. Abd El-Latif, X.~Bai, and X.~Niu.
+\newblock 2-d cartoon character detection based on scalable-shape context and
+  hough voting.
+\newblock {\em Information Technology Journal}, 12(12), 2013.
+
+\end{thebibliography}

@@ -1,0 +1,179 @@
+import os,sys,pickle
+import numpy as np
+import sklearn.cluster
+import sklearn.lda
+import matplotlib.pyplot as plt
+import sklearn.metrics
+import colorsys
+
+def read_all_features(path):
+    nf=3
+    ALLF=np.empty([1,nf]) #RGB!
+    is_first_entry = False
+    toggle=True 
+    for fn in os.listdir(path):
+        if "DS_Store" in os.path.join(path, fn):
+           continue 
+        pf = open(os.path.join(path,fn)) 
+        one_image = pickle.load(pf)
+        for k in one_image.keys():
+            #key=segment label, can be ignored
+           if toggle: 
+            features = one_image[k]/255.0 #numpy array
+            ft=features 
+            features = colorsys.rgb_to_hsv(ft[0], ft[1], ft[2])
+            features = list(features) 
+            features = np.array(features)
+           else:
+            features = one_image[k]
+           features = features.reshape([1,nf])
+            #print "feat: ", str(features), "   ", str(ft)
+           if is_first_entry :
+                ALLF[0] = features 
+                is_first_entry = False
+           else:
+                ALLF = np.append(ALLF, features,axis=0)
+
+    #print ALLF.shape
+    #print ALLF
+    return ALLF
+        
+
+
+def do_kmeans_clustering(ALLF,k) :
+    km = sklearn.cluster.KMeans(n_clusters=k,n_init=20)
+    labels = km.fit_predict(ALLF)
+    CC = km.cluster_centers_
+    with open('Model.pickle','wb') as outfile:
+        pickle.dump(km, outfile, protocol=pickle.HIGHEST_PROTOCOL)
+
+    #print CC
+    #print "SHAPE ########: ", CC.shape
+    return km,CC,labels
+
+
+
+def dbscan_clust(ALLF) :
+    dbs = sklearn.cluster.DBSCAN()
+    dict_assignments = dbs.fit(ALLF)
+    dict_assignments = dbs.fit_predict(ALLF)
+    dict_assignments = dbs.labels_ 
+    with open('Model_dbs.pickle','wb') as outfile:
+        pickle.dump(dbs, outfile, protocol=pickle.HIGHEST_PROTOCOL)
+    print dict_assignments
+    return dbs,[],dict_assignments
+
+
+def agglo_clust(ALLF,k) :
+    dbs = sklearn.cluster.AgglomerativeClustering(n_clusters=k)
+    dict_assignments = dbs.fit(ALLF)
+    dict_assignments = dbs.fit_predict(ALLF)
+    with open('Model_dbs.pickle','wb') as outfile:
+        pickle.dump(dbs, outfile, protocol=pickle.HIGHEST_PROTOCOL)
+
+    return dbs,[],dict_assignments
+
+def lda_clust(ALLF) :
+    km = sklearn.lda.LDA()
+    km.fit(ALLF)
+    #CC = km.cluster_centers_
+    with open('Model.pickle','wb') as outfile:
+        pickle.dump(km, outfile, protocol=pickle.HIGHEST_PROTOCOL)
+        
+    print CC
+
+
+def silhoutte_score(ALLF,labels):
+    scores =  sklearn.metrics.silhouette_samples(ALLF, labels)
+    #print scores
+    print np.average(scores) , np.std(scores)
+    #print ALLF.shape
+    #print labels.shape
+    return scores 
+
+    
+def main(fpath) :
+    print fpath[1]
+    ALLF = read_all_features(fpath[1])
+    #ALLF = convert_all_to_HSV(ALLF)
+    # for k in [200,100,50] :
+    #     km,CC,labels = agglo_clust(ALLF,k)
+    #     silhoutte_score(ALLF,labels)
+    km,CC,labels = dbscan_clust(ALLF)
+    silhoutte_score(ALLF,labels)
+    #km,CC,labels = agglo_clust(ALLF)
+
+    #visualize_dictionary(labels,km,CC)
+    #lda_clust(ALLF)
+
+
+def visualize_dictionary(dict_assignments,km,CC) :
+    #each element is a cluster centre (r g b 3d)
+    #dict_assignments are cluster centres!
+    histogram_dict=dict() 
+    allc = np.unique(dict_assignments)
+    toggle=True
+    for c in allc:
+        if c!=-1:
+                histogram_dict[c]=0 ;
+    for w in dict_assignments:
+        if w != -1 :
+                histogram_dict[w]=histogram_dict[w]+1 
+
+    fig = plt.figure(tight_layout=True)
+    ax = fig.add_subplot(111)
+    #colors are just the CC normalized by 255
+    if toggle:
+       colors = CC
+       for index in range (0, CC.shape[0]):
+           colors[index]=colorsys.hsv_to_rgb(colors[index][0], colors[index][1], colors[index][2])
+    else:
+       colors = CC/255.0  
+    #colors = all_to_rgb(CC)
+    ys=[]
+    for c in allc:
+        if c!=-1:
+                ys.append(histogram_dict[c])
+    ys = np.array(ys) 
+    xs = []
+    for c in allc:
+        if c!=-1 :
+            xs.append(c)
+    xs = np.array(xs)
+    normalize = np.float(np.sum(ys))
+    #print "MAX"+str(normalize) 
+    ys = np.divide(ys,normalize)
+    #print np.column_stack((xs,ys))
+
+    #Need to sort bars by y's. Colors are important here
+    #sort (xs,ys) on ys. we'll get color order. remake color array
+    sort_hist = False
+    if sort_hist :
+        xs = list(xs)
+        ys = list(ys)
+        
+        sortedys = zip(xs,ys)
+        
+        sortedys = sorted(sortedys , key=lambda x: x[1],reverse=True)
+        #print sortedys
+        
+        colors = []
+        for (x,y) in sortedys :
+            color = CC[x]#/255.0 
+            colors.append(color)
+            
+        colors = np.array(colors) 
+        (xs,ys) = zip(*sortedys) 
+        xs = list(xs) ; ys = list(ys)
+        xs = sorted(xs)
+    
+    rects = ax.bar(xs, ys , color=colors)
+    ax.set_xlabel("Cluster number")
+    ax.set_ylabel("Frequency")
+    plt.show()
+        
+        
+    
+    
+if __name__ == "__main__":
+    main(sys.argv)
