@@ -21,7 +21,7 @@
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
-\ifcvprfinal\pagestyle{empty}\fi
+%\ifcvprfinal\pagestyle{empty}\fi
 \begin{document}
 
 %%%%%%%%% TITLE
@@ -44,7 +44,8 @@ Prateek Sharma \\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-  In this project we present the design and implementation, and evaluate
+
+In this project we present the design and implementation, and evaluate
 an unsupervised system for recognition of the \emph{main character} of
 an animated cartoon video. The main character (not to be confused with a
 text character!)is the person who occurs in the largest number of
@@ -56,13 +57,13 @@ supervised-learning based techniques, and instead is \emph{completely
 
 %%%%%%%%% BODY TEXT
 \section{Introduction}
-In this project we present the design and implementation, and evaluate
-an unsupervised system for recognition of the \emph{main character} of
-an animated cartoon video. The main character (not to be confused with a
-text character!)is the person who occurs in the largest number of
-scenes in a video. Our approach eschews the commonly found
-supervised-learning based techniques, and instead is \emph{completely
-  unsupervised}.
+
+The problem that we consider in this project is that of identifying
+\emph{characters} in an animated cartoon video. In order to do this,
+we utilize a combination of image segmentation, clustering, and infer
+association-rules for recognizing the characters. Most importantly, we
+do everything in an unsupersived manner, and do not use any
+labelled/test data. 
 
 
 \subsection{Unsupervised Learning}
@@ -141,9 +142,9 @@ cartoons, and thus a vast majority of literature in this area is of
 little use to us.
 
 For the animated cartoon domain, the results are not as
-numerous. \cite{zhang20132} uses multi-scale shape detection and a
-supervised machine learning approach, which is in contrast to our
-unsupervised approach.
+numerous.~\cite{zhang20132} uses multi-scale shape detection for
+cartoons and a supervised machine learning approach, which is in
+contrast to our unsupervised approach.
 
 
 
@@ -175,7 +176,9 @@ later:
   then clustered to form a dictionary of segments.
 \item Clusters which represent a whole or part of the characters are identified
 \item The scene frames are processed again. They may be resegmented
-  again, and we assign each segment 
+  again, and we assign each segment to the appropriate cluster label. 
+\item From labelled segments, objects are recognized.
+\item From detected objects, we recognize characters. 
 \end{enumerate}
 
 \subsection{Scene detection}
@@ -191,6 +194,16 @@ Using the scene detection, we are able to extract about 200 frames
 from a 20 minute episode. 
 
 \subsection{Segmentation}
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{../seg2.pdf}
+  \caption{The result of the segmentation step of the
+    pipeline. Grabcut is able to remove the background, and the
+    norm-cut segmentation algorithm yields the segments. Each segment
+    is represented by a different color overlayed on top of the
+    original image. }
+  \label{diff-segmentations}
+\end{figure*}
 
 Once frames from the video have been sampled (by using scene detection
 above), we process each frame independently to extract the
@@ -206,17 +219,9 @@ easily segmented from most frames. Ofcourse, we as yet do not know
 which segment corresponds to which object, which is considered in the
 next step. 
 
-\begin{figure*}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{../seg2.pdf}
-  \caption{The result of the segmentation step of the
-    pipeline. Grabcut is able to remove the background, and the
-    norm-cut segmentation algorithm yields the segments}
-  \label{diff-segmentations}
-\end{figure*}
 
-We have the evaluated the effectiveness of Normalized-cuts, Watershed
-and QuickShift with different choice of parameters. Because its
+We have the evaluated the effectiveness of \textbf{Normalized-cuts, Watershed
+and QuickShift} with different choice of parameters. Because its
 difficult to show the effectiveness of these without ground-truth, we
 do not include the results of the segmentation process, since a lot of
 it was done by visual inspection on a large number of frames to
@@ -228,12 +233,12 @@ parameter to the normalized-cut algorithm.
 
 The question then is how to determine the number of segments. Certain
 frames have a lot more segments than others. To solve this problem, we
-use the Grab-cut technique to extract the foreground of every
+use the \textbf{Grab-cut} technique to extract the foreground of every
 frame. This eliminates the background noise in the images , and
 provides a filtered image for the segmentation algorithm. Grabcut
 requires a bounding box as the input. We provide the entire frame
 (minus a small border strip) to Grab-cut. Figure ~\ref{grabcut} shows
-the results of grabcut being applied on some frames. We can see that
+the results of grabcut being applied on a frames. We can see that
 the background is removed from the images quite nicely. After grabcut,
 the maximum number of segments we segment the image into is
 \emph{20}. If fewer number of segments are detected, then norm-cut
@@ -246,7 +251,9 @@ object is represented as one segment).
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{../results/southpark.png}
-  \caption{Original Image}
+  \caption{A sample frame from SouthPark. Notice the constant
+    color-fills, smooth lines and edges, and lack of textures and
+    complicated gradients. }
   \label{orig-image}
 \end{figure}
 
@@ -254,7 +261,10 @@ object is represented as one segment).
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{../results/grabcut_full.png}
-  \caption{Grabcut effectiveness}
+  \caption{Image after grab-cut being applied to the entire
+    image. Grabcut is surprisingly good at removing a lot of the
+    background. This reduces the number of segments present in the
+    image, and particularly the larger, background segments.  }
   \label{grabcut}
 \end{figure}
 
@@ -292,7 +302,7 @@ Once all the features from the images have been extracted, we store
 them for later use. The features are then fed to a clustering
 algorithm such as k-means. We have use 3 different clustering
 algorithms: kmeans, Agglomerative clustering, and DBSCAN. These are
-evaluated in the next section(Evaluation).
+evaluated in the evaluation section.
 
 The choice for the number of clusters is a very important one. While
 silhoutte scores guided us to use higher values for the number of
@@ -327,14 +337,14 @@ luminance information, thus providing components such as color,
 vibrancy and brightness, as opposed to the RGB color space that
 doesn’t provide a distinction between these factors.
 
-\begin{figure*}[H]
+\begin{figure*}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{hsv.png}
   \caption{K-means histogram with the HSV feature vectors}
   \label{hsv}
 \end{figure*}
 
-\begin{figure*}[H]
+\begin{figure*}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{rgb.png}
   \caption{K-means histogram with the RGB feature vectors}
@@ -413,9 +423,31 @@ before concluding that the character exists in the frame.
 
 \section{Implementation}
 The pipeline is implemented by using the \texttt{scikit-image} and
-\texttt{opencv} libraries. For clustering, the \texttt{scikit-learn}
-toolkit was utilized.
+\texttt{OpenCV} libraries in \texttt{Python}. For clustering, the
+\texttt{scikit-learn} toolkit was utilized.
 
+We have used \texttt{numpy} arrays to represent the images and feature
+vectors. The feature vectors are extracted from each video only once,
+after which they are \texttt{pickle}'d and compressed and stored on
+disk. This allows the very quick experimentation with clustering and
+object recognition. The entire pipeline is parallelizable, although
+we have not dealt with a large enough volume of data/processing to
+warrant multi-threading.
+
+In hindsight, \texttt{Matlab} would have been a better choice as a
+platform for the implementation of our pipeline. However, the initial
+plan was to run several large scale experiments (in parallel) on a
+small computing cluster, for which Matlab would have been
+unsuitable. The lack of stability in the image processing libraries
+and the wildly inconsistant implementation between versions was a huge
+source of unintended bugs and frustration. We must note here that
+\texttt{scikit-image} seems like a far easier to use and better
+developed image processing library for Python than the more popular
+and well-known \texttt{OpenCV}
+
+Not counting the various test functionality for the imaging libraries,
+our core image processing pipeline is implemented in a little over
+1000 lines of Python.
 
 
 \section{Evaluation}
@@ -423,8 +455,8 @@ toolkit was utilized.
 The primary difficulty in evaluation was the lack of ground-truth data
 at every step of the pipeline. As a result, most of the evaluation was
 done manually by ``eye-balling'' the output at each step and then
-trying to understand the results.
-
+trying to understand the results. Table ~\ref{params} shows the
+average values for some the parameters.
 
 \begin{table}
 \begin{tabular}{|l|c|}
@@ -440,85 +472,126 @@ Feature vector length &  3  \\
   \hline
 \end{tabular}
 \caption{Average numbers for the experiments}
+\label{params}
 \end{table}
 
+We have broken down the 
 
 \subsection{Segmentation Analysis}
 
-\subsection{Clustering Histograms}
+The normalized-cuts and watershed segmentation do almost equally well,
+whereas QuickShift is very sensitive on the input parameters, and was
+discarded after some initial evaluation. 
+
+\subsection{Clustering Evaluation}
+
+In order to know how good the clustering is, we have used two primary
+approaches:
+\begin{enumerate}
+\item Histogram analysis of the cluster sizes. 
+\item Silhoutte scores
+\end{enumerate}
+
+\subsubsection{Cluster size Histograms}
+
+We inspect the cluster size (frequency of occurrence points in a given
+cluster) for the various cluster configurations and algorithms. For
+example, in Figure~\ref{k-10}, we show the frequency histogram for
+kmeans run with 10 clusters. \emph{The color of the bars represent the
+  actual cluster centre color.}. Similar histograms for other
+clustering parameters are shown in
+Figures~\ref{k-20,k-30,k-100,k-150,k-200,k-250,k-300,dbscan,agglo}.
+
+
+
+\subsubsection{Silhoutte Scores}
+
+To evaluate how good the clustering really is, we used the
+\emph{silhoutte scores}. Table ~\ref{sillyscores} gives the average
+silhoutte scores and the standard deviation for the various
+parameters.  We can see that higher number of clusters yields scores
+closer to 1. Also note that HSV colorspace gives slightly higher
+scores. 
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=0.50\textwidth]{../results/10_histogram.png}
-  \caption{kmeans histogram with k=10}
+  \caption{kmeans histogram with k=10. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-10}
 \end{figure}
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=0.50\textwidth]{../results/20_histogram.png}
-  \caption{kmeans histogram with k=20}
+  \caption{kmeans histogram with k=20. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-20}
 \end{figure}
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=0.50\textwidth]{../results/30_histogram.png}
-  \caption{kmeans histogram with k=30}
+  \caption{kmeans histogram with k=30. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-30}
 \end{figure}
 
 \begin{figure*}[p]
   \centering
   \includegraphics[width=0.90\textwidth]{../results/100_histogram.png}
-  \caption{kmeans histogram with k=100}
-  \label{k-30}
+  \caption{kmeans histogram with k=100. \emph{The color of the bars
+represent the actual cluster centre color.}}
+  \label{k-100}
 \end{figure*}
 
 \begin{figure*}[p]
   \centering
   \includegraphics[width=0.90\textwidth]{../150_histogram.png}
-  \caption{kmeans histogram with k=150}
+  \caption{kmeans histogram with k=150. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-150}
 \end{figure*}
 
 \begin{figure*}[p]
   \centering
   \includegraphics[width=0.90\textwidth]{../200_histogram_sorted.png}
-  \caption{kmeans histogram with k=200}
+  \caption{kmeans histogram with k=200. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-200}
 \end{figure*}
 
 \begin{figure*}[p]
   \centering
   \includegraphics[width=0.90\textwidth]{../250_histogram.png}
-  \caption{kmeans histogram with k=250}
+  \caption{kmeans histogram with k=250. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-250}
 \end{figure*}
 
 \begin{figure*}[p]
   \centering
   \includegraphics[width=0.90\textwidth]{../300_histogram.png}
-  \caption{kmeans histogram with k=300}
+  \caption{kmeans histogram with k=300. \emph{The color of the bars
+represent the actual cluster centre color.}}
   \label{k-300}
 \end{figure*}
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=0.50\textwidth]{../dbscan_hist.png}
-  \caption{DBSCAN}
+  \caption{Cluster frequency histogram for the DBSCAN. Dbscan detects
+    number of clusters automatically.}
   \label{dbscan}
 \end{figure}
 
 \begin{figure*}[p] 
   \centering
   \includegraphics[width=0.90\textwidth]{../agglo_hist.png}
-  \caption{Agglomerative clustering with 200 clusters}
+  \caption{Agglomerative clustering with 200 clusters. }
   \label{agglo}
 \end{figure*}
 
-
-\subsection{Silhoutte Scores}
 \begin{table*}
   \begin{tabular}{|l|l|l||r|r|}
     \hline

@@ -24,54 +24,60 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}\hskip -1em.\nobreakspace  {}Why Cartoons}{1}{subsection.1.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}\hskip -1em.\nobreakspace  {}Scope of this project}{1}{subsection.1.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}\hskip -1em.\nobreakspace  {}Background and Related Work}{1}{section.2}}
+\@writefile{brf}{\backcite{everingham2009taking, satoh1999name,snoek2008concept,sivic2005person}{{1}{2}{section.2}}}
+\@writefile{brf}{\backcite{arandjelovic2005automatic}{{1}{2}{section.2}}}
 \citation{zhang20132}
-\@writefile{brf}{\backcite{everingham2009taking, satoh1999name,snoek2008concept,sivic2005person}{{2}{2}{section.2}}}
-\@writefile{brf}{\backcite{arandjelovic2005automatic}{{2}{2}{section.2}}}
 \@writefile{brf}{\backcite{zhang20132}{{2}{2}{section.2}}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}\hskip -1em.\nobreakspace  {}Design}{2}{section.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}\hskip -1em.\nobreakspace  {}High-level pipeline}{2}{subsection.3.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}\hskip -1em.\nobreakspace  {}Scene detection}{2}{subsection.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}\hskip -1em.\nobreakspace  {}Segmentation}{2}{subsection.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The result of the segmentation step of the pipeline. Grabcut is able to remove the background, and the norm-cut segmentation algorithm yields the segments}}{3}{figure.1}}
-\newlabel{diff-segmentations}{{1}{3}{The result of the segmentation step of the pipeline. Grabcut is able to remove the background, and the norm-cut segmentation algorithm yields the segments\relax }{figure.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Original Image}}{3}{figure.2}}
-\newlabel{orig-image}{{2}{3}{Original Image\relax }{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Grabcut effectiveness}}{3}{figure.3}}
-\newlabel{grabcut}{{3}{3}{Grabcut effectiveness\relax }{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The result of the segmentation step of the pipeline. Grabcut is able to remove the background, and the norm-cut segmentation algorithm yields the segments. Each segment is represented by a different color overlayed on top of the original image. }}{3}{figure.1}}
+\newlabel{diff-segmentations}{{1}{3}{The result of the segmentation step of the pipeline. Grabcut is able to remove the background, and the norm-cut segmentation algorithm yields the segments. Each segment is represented by a different color overlayed on top of the original image}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A sample frame from SouthPark. Notice the constant color-fills, smooth lines and edges, and lack of textures and complicated gradients. }}{3}{figure.2}}
+\newlabel{orig-image}{{2}{3}{A sample frame from SouthPark. Notice the constant color-fills, smooth lines and edges, and lack of textures and complicated gradients}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Image after grab-cut being applied to the entire image. Grabcut is surprisingly good at removing a lot of the background. This reduces the number of segments present in the image, and particularly the larger, background segments. }}{3}{figure.3}}
+\newlabel{grabcut}{{3}{3}{Image after grab-cut being applied to the entire image. Grabcut is surprisingly good at removing a lot of the background. This reduces the number of segments present in the image, and particularly the larger, background segments}{figure.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}\hskip -1em.\nobreakspace  {}Feature extraction}{3}{subsection.3.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}\hskip -1em.\nobreakspace  {}Dictionary creation using clustering}{3}{subsection.3.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}\hskip -1em.\nobreakspace  {}HSV color representation for clustering}{4}{subsection.3.6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7}\hskip -1em.\nobreakspace  {}Segment recognition}{4}{subsection.3.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8}\hskip -1em.\nobreakspace  {}Character recognition}{4}{subsection.3.8}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}\hskip -1em.\nobreakspace  {}Implementation}{4}{section.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}\hskip -1em.\nobreakspace  {}Evaluation}{4}{section.5}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Averages and standard deviations of the silhoutte scores. HSV colorspace gives a higher score.}}{5}{table.2}}
-\newlabel{sillyscores}{{2}{5}{Averages and standard deviations of the silhoutte scores. HSV colorspace gives a higher score}{table.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Average numbers for the experiments}}{5}{table.1}}
+\newlabel{params}{{1}{5}{Average numbers for the experiments\relax }{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}\hskip -1em.\nobreakspace  {}Evaluation}{5}{section.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}\hskip -1em.\nobreakspace  {}Segmentation Analysis}{5}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}\hskip -1em.\nobreakspace  {}Clustering Histograms}{5}{subsection.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}\hskip -1em.\nobreakspace  {}Silhoutte Scores}{5}{subsection.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}\hskip -1em.\nobreakspace  {}Clustering Evaluation}{5}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Cluster size Histograms}{5}{subsubsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Silhoutte Scores}{5}{subsubsection.5.2.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}\hskip -1em.\nobreakspace  {}Future Work and Conclusion}{5}{section.6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces kmeans histogram with k=10}}{5}{figure.6}}
-\newlabel{k-10}{{6}{5}{kmeans histogram with k=10\relax }{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces kmeans histogram with k=20}}{5}{figure.7}}
-\newlabel{k-20}{{7}{5}{kmeans histogram with k=20\relax }{figure.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces kmeans histogram with k=30}}{6}{figure.8}}
-\newlabel{k-30}{{8}{6}{kmeans histogram with k=30\relax }{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces DBSCAN}}{6}{figure.14}}
-\newlabel{dbscan}{{14}{6}{DBSCAN\relax }{figure.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces kmeans histogram with k=100}}{7}{figure.9}}
-\newlabel{k-30}{{9}{7}{kmeans histogram with k=100\relax }{figure.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces kmeans histogram with k=150}}{7}{figure.10}}
-\newlabel{k-150}{{10}{7}{kmeans histogram with k=150\relax }{figure.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces kmeans histogram with k=200}}{8}{figure.11}}
-\newlabel{k-200}{{11}{8}{kmeans histogram with k=200\relax }{figure.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces kmeans histogram with k=250}}{8}{figure.12}}
-\newlabel{k-250}{{12}{8}{kmeans histogram with k=250\relax }{figure.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces kmeans histogram with k=300}}{9}{figure.13}}
-\newlabel{k-300}{{13}{9}{kmeans histogram with k=300\relax }{figure.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Agglomerative clustering with 200 clusters}}{9}{figure.15}}
-\newlabel{agglo}{{15}{9}{Agglomerative clustering with 200 clusters\relax }{figure.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Averages and standard deviations of the silhoutte scores. HSV colorspace gives a higher score.}}{6}{table.2}}
+\newlabel{sillyscores}{{2}{6}{Averages and standard deviations of the silhoutte scores. HSV colorspace gives a higher score}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces kmeans histogram with k=10. \emph  {The color of the bars represent the actual cluster centre color.}}}{6}{figure.6}}
+\newlabel{k-10}{{6}{6}{kmeans histogram with k=10. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces kmeans histogram with k=20. \emph  {The color of the bars represent the actual cluster centre color.}}}{6}{figure.7}}
+\newlabel{k-20}{{7}{6}{kmeans histogram with k=20. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces kmeans histogram with k=30. \emph  {The color of the bars represent the actual cluster centre color.}}}{6}{figure.8}}
+\newlabel{k-30}{{8}{6}{kmeans histogram with k=30. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Cluster frequency histogram for the DBSCAN. Dbscan detects number of clusters automatically.}}{6}{figure.14}}
+\newlabel{dbscan}{{14}{6}{Cluster frequency histogram for the DBSCAN. Dbscan detects number of clusters automatically}{figure.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces K-means histogram with the HSV feature vectors}}{7}{figure.4}}
+\newlabel{hsv}{{4}{7}{K-means histogram with the HSV feature vectors\relax }{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces K-means histogram with the RGB feature vectors}}{8}{figure.5}}
+\newlabel{rgb}{{5}{8}{K-means histogram with the RGB feature vectors\relax }{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces kmeans histogram with k=100. \emph  {The color of the bars represent the actual cluster centre color.}}}{8}{figure.9}}
+\newlabel{k-100}{{9}{8}{kmeans histogram with k=100. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces kmeans histogram with k=150. \emph  {The color of the bars represent the actual cluster centre color.}}}{9}{figure.10}}
+\newlabel{k-150}{{10}{9}{kmeans histogram with k=150. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces kmeans histogram with k=200. \emph  {The color of the bars represent the actual cluster centre color.}}}{9}{figure.11}}
+\newlabel{k-200}{{11}{9}{kmeans histogram with k=200. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces kmeans histogram with k=250. \emph  {The color of the bars represent the actual cluster centre color.}}}{10}{figure.12}}
+\newlabel{k-250}{{12}{10}{kmeans histogram with k=250. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces kmeans histogram with k=300. \emph  {The color of the bars represent the actual cluster centre color.}}}{10}{figure.13}}
+\newlabel{k-300}{{13}{10}{kmeans histogram with k=300. \emph {The color of the bars represent the actual cluster centre color.}\relax }{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Agglomerative clustering with 200 clusters. }}{11}{figure.15}}
+\newlabel{agglo}{{15}{11}{Agglomerative clustering with 200 clusters}{figure.15}{}}
 \bibstyle{ieee}
 \bibdata{egbib}
 \bibcite{arandjelovic2005automatic}{1}
